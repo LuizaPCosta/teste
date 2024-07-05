@@ -36,7 +36,7 @@ app.config["TEMPLATES_AUTO_RELOAD"] = True
 # CREATE DATABASE
 class Base(DeclarativeBase):
     pass
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DB_URI")
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DB_URI", "sqlite:///blog.db")
 db = SQLAlchemy(model_class=Base)
 db.init_app(app)
 
@@ -87,8 +87,8 @@ class Comment(db.Model):
     parent_post: Mapped["BlogPost"] = relationship(back_populates="comments")
     post_id: Mapped[int] = mapped_column(Integer, db.ForeignKey("blog_posts.id"))
 
-# with app.app_context():
-#     db.create_all()
+with app.app_context():
+    db.create_all()
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
