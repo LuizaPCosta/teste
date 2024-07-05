@@ -87,8 +87,8 @@ class Comment(db.Model):
     parent_post: Mapped["BlogPost"] = relationship(back_populates="comments")
     post_id: Mapped[int] = mapped_column(Integer, db.ForeignKey("blog_posts.id"))
 
-with app.app_context():
-    db.create_all()
+# with app.app_context():
+#     db.create_all()
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
