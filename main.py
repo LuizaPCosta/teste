@@ -12,13 +12,13 @@ from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
 from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 import smtplib
-import os
+
 
 email_sender = "luiza.dpcosta@gmail.com"
-app_password = os.environ.get("APP_PASSWORD")
+app_password = "cjhj bmux itvw twro"
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
+app.config['SECRET_KEY'] = "8BYkEfBA6O6donzWlSihBXox7C0sKR6b"
 ckeditor = CKEditor(app)
 Bootstrap5(app)
 
@@ -36,7 +36,7 @@ app.config["TEMPLATES_AUTO_RELOAD"] = True
 # CREATE DATABASE
 class Base(DeclarativeBase):
     pass
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DB_URI", "sqlite:///blog.db")
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///blog.db"
 db = SQLAlchemy(model_class=Base)
 db.init_app(app)
 
@@ -60,7 +60,7 @@ class User(db.Model, UserMixin):
     __tablename__ = "blog_users"
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     email: Mapped[str] = mapped_column(String(250), unique=True, nullable=False)
-    name: Mapped[str] = mapped_column(String(250), nullable=False)
+    name: Mapped[str] = mapped_column(String(250))
     password: Mapped[str] = mapped_column(String(250), nullable=False)
     posts: Mapped["BlogPost"] = relationship(back_populates="author") # works like a list that contains the posts from a specific author
     user_comments: Mapped["Comment"] = relationship(back_populates="comment_author")
