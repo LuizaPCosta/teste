@@ -14,6 +14,8 @@ from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 import smtplib
 import os
 
+#testing how this commitment thing works
+
 email_sender = "luiza.dpcosta@gmail.com"
 app_password = os.environ.get("APP_PASSWORD")
 
