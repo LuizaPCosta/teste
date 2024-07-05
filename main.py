@@ -14,11 +14,6 @@ from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 import smtplib
 import os
 
-#testing how this commitment thing works
-# how???
-# for god's sake, how the fuck does it work??
-
-
 email_sender = "luiza.dpcosta@gmail.com"
 app_password = os.environ.get("APP_PASSWORD")
 
